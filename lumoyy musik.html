@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Angel UI Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+        }
+
+        .card-container {
+            position: relative;
+            width: 450px;
+            height: 800px;
+            /* Latar belakang menggunakan foto barumu */
+            background-image: url('IMG-20260309-WA0036.jpg'); 
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            color: white;
+        }
+
+        /* Glassmorphism Base Style */
+        .glass-panel {
+            background: rgba(15, 30, 50, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            position: absolute;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Header Text */
+        .header-text {
+            position: absolute;
+            top: 40px;
+            left: 30px;
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .header-text::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 250px;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Music Player Widget */
+        .music-widget {
+            top: 100px;
+            left: 80px;
+            width: 220px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .music-cover {
+            width: 40px;
+            height: 40px;
+            /* Cover musik menggunakan foto barumu */
+            background-image: url('IMG-20260309-WA0036.jpg'); 
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .music-info {
+            flex-grow: 1;
+        }
+        .music-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 3px;
+            background: rgba(255,255,255,0.3);
+            position: relative;
+            margin-bottom: 5px;
+            border-radius: 2px;
+        }
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 30%; /* Simulasi progress bar */
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(255,255,255,0.8);
+        }
+        .music-controls {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+        .music-controls span {
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .music-controls span:hover {
+            color: #ff7b54;
+            transform: scale(1.2);
+        }
+
+        /* Floating Icons */
+        .icon-circle {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(15, 30, 50, 0.4);
+            backdrop-filter: blur(4px);
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .icon-mail { top: 150px; right: 50px; }
+        .icon-music { top: 220px; left: 100px; }
+
+        /* Gallery Widget */
+        .gallery-widget {
+            top: 250px;
+            right: 40px;
+            width: 70px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .gallery-title {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .gallery-item {
+            width: 40px;
+            height: 40px;
+            /* Thumbnail galeri menggunakan foto barumu */
+            background-image: url('IMG-20260309-WA0036.jpg'); 
+            background-size: cover;
+            background-position: top center;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        /* Age Badge */
+        .age-badge {
+            top: 380px;
+            left: 50px;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Description Box */
+        .description-box {
+            bottom: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.6;
+            border-radius: 20px;
+        }
+
+        /* Big Name Title */
+        .name-title {
+            position: absolute;
+            bottom: 40px;
+            right: 30px;
+            text-align: right;
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.6);
+        }
+        
+        .name-title span {
+            color: transparent;
+            -webkit-text-stroke: 1.5px white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" src="Oh My Angel - CHAI.mp3" loop></audio>
+
+    <div class="card-container">
+        
+        <div class="header-text">My Profile</div>
+
+        <div class="glass-panel music-widget">
+            <div class="music-cover"></div>
+            <div class="music-info">
+                <div class="music-title">Oh My Angel - CHAI</div>
+                <div class="progress-bar"></div>
+                <div class="music-controls">
+                    <span>↻</span>
+                    <span>◀◀</span>
+                    <span id="playBtn" onclick="togglePlay()" title="Click to Play!">▶</span>
+                    <span>▶▶</span>
+                    <span>🔀</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="icon-circle icon-mail">✉</div>
+        <div class="icon-circle icon-music">♫</div>
+
+        <div class="glass-panel gallery-widget">
+            <div class="gallery-title">Gallery</div>
+            <div class="gallery-item" style="background-position: center;"></div>
+            <div class="gallery-item" style="background-position: top;"></div>
+        </div>
+
+        <div class="glass-panel age-badge">
+            20 Age
+        </div>
+
+        <div class="glass-panel description-box">
+            A beautiful soul carrying warm emotions. Someone who values small moments and sincerity. With an inner strength that keeps moving forward, embracing every melody of life gracefully.
+        </div>
+
+        <div class="name-title">
+            BEAUTIFUL<br>
+            <span>ANGEL</span>
+        </div>
+
+    </div>
+
+    <script>
+        var audio = document.getElementById("bgMusic");
+        var playBtn = document.getElementById("playBtn");
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerText = "⏸"; // Ubah jadi ikon Pause saat jalan
+            } else {
+                audio.pause();
+                playBtn.innerText = "▶"; // Ubah jadi ikon Play saat berhenti
+            }
+        }
+    </script>
+</body>
+</html>
